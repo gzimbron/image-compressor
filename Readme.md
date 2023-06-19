@@ -54,7 +54,7 @@ await Compressor.folderCompress('./originals', './processed', {
   quality: 80, //default is 80
   maxWidth: 1000, //default is 1000
   maxHeight: 1000, //default is 1000
-  extensions: ['jpg', 'png', 'jpeg'] //default is ['jpg', 'png', 'jpeg'], images to process by extension
-  pngToWebp: true // default is false, only works for png files
+  extensions: ['jpg', 'png', 'jpeg'], //default is ['jpg', 'png', 'jpeg'], images to process by extension
+  pngToWebp: false // default is false, only works for png files
 });
 ```
