@@ -1,19 +1,32 @@
 {
-	"name": "image-compressor",
-	"version": "1.0.0",
-	"description": "",
+	"name": "imgpress",
+	"version": "0.0.6",
+	"description": "Compresor y redimensionador de imágenes con opciones de calidad y tamaño",
 	"type": "module",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+	"main": "./bin/index.js",
+	"bin": {
+		"imgpress": "./bin/index.js"
 	},
-	"keywords": [],
-	"author": "",
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {},
+	"keywords": [
+		"image",
+		"compress",
+		"resize"
+	],
+	"author": "Gustavo Zimbrón",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gzimbron/image-compressor.git"
+	},
 	"license": "ISC",
 	"engines": {
 		"node": ">=14.8.0"
 	},
 	"dependencies": {
+		"commander": "^11.0.0",
 		"sharp": "^0.32.1"
 	}
 }
