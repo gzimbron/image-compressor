@@ -1,6 +1,6 @@
 {
 	"name": "imgpress",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Compresor y redimensionador de imágenes con opciones de calidad y tamaño",
 	"type": "module",
 	"main": "./src/index.js",

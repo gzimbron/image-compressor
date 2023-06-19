@@ -69,11 +69,10 @@ export default class Compressor {
 	 * Comprime una imagen y la guarda en otra ruta
 	 * @param {string} imageInput Path de la imagen original
 	 * @param {string} imageOutput Path de la imagen de salida, si no se especifica se guarda en la misma ruta con el sufijo _processed
-	 * @param {{ quality: number, maxWidth: number, maxHeight: number, extensions: string [] }} options Opciones de compresión:
+	 * @param {{ quality: number, maxWidth: number, maxHeight: number, pngToWebp: boolean }} options Opciones de compresión:
 	 * * quality: calidad de compresión (0 - 100),
 	 * * maxWidth: ancho maximo en pixeles,
 	 * * maxHeight: alto maximo en pixeles,
-	 * * extensions: extensiones que se procesan por default [jpeg, jpg, png],
 	 * * pngToWebp: convierte las imagenes .png a .webp al procesarlas
 	 */
 	static async imageCompress(imageInput, imageOutput = '', options = {}) {
