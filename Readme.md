@@ -8,7 +8,9 @@ This is a simple image compressor that uses the [sharp](https://www.npmjs.com/pa
 
 ### Installation
 
-```npm i -g imgpress```
+```bash
+npm i -g imgpress
+```
 
 ### Compressing a single image
 
