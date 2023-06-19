@@ -18,7 +18,7 @@ export default class Compressor {
 	 * * extensions: extensiones que se procesan por default [jpeg, jpg, png],
 	 * * pngToWebp: convierte las imagenes .png a .webp al procesarlas
 	 */
-	static async folderCompress(folderInput, folderOutput, options) {
+	static async folderCompress(folderInput, folderOutput = '', options = {}) {
 		if (folderInput.endsWith('/')) {
 			folderInput = folderInput.slice(0, -1);
 		}
@@ -76,7 +76,7 @@ export default class Compressor {
 	 * * extensions: extensiones que se procesan por default [jpeg, jpg, png],
 	 * * pngToWebp: convierte las imagenes .png a .webp al procesarlas
 	 */
-	static async imageCompress(imageInput, imageOutput, options) {
+	static async imageCompress(imageInput, imageOutput = '', options = {}) {
 		if (!fs.existsSync(imageInput)) {
 			throw new Error('La imagen de entrada no existe');
 		}
