@@ -45,7 +45,7 @@ await Compressor.imageCompress('./original.jpg', './processed.jpg', {
   quality: 80, //default is 80
   maxWidth: 1000, //default is 1000
   maxHeight: 1000, //default is 1000
-  pngToWebp: true // default is false, only works for png files
+  pngToWebp: false // default is false, only works for png files
 });
 ```
 
