@@ -6,13 +6,13 @@ This is a simple image compressor that uses the [sharp](https://www.npmjs.com/pa
 
 ## Global Installation & Usage
 
-### Installation
+### Installation cli (globally)
 
 ```bash
 npm i -g imgpress
 ```
 
-### Compressing a single image
+### Compressing a single image from cli
 
 ```bash
 imgpress s -i <input> -o <output> -q <quality> -w <width> -h <height> -p <webp compression for png files>
@@ -20,7 +20,7 @@ imgpress s -i <input> -o <output> -q <quality> -w <width> -h <height> -p <webp c
 
 If no output is specified, the output will be OriginalFile_processed.ext
 
-### Compressing multiple images in a directory
+### Compressing multiple images in a directory from cli
 
 ```bash
 imgpress f -i <input-directory> -o <output-directory> -q <quality> -w <width> -h <height> -p <webp compression for png files>
@@ -30,13 +30,13 @@ If no output directory is specified, the output directory will be "_processed" i
 
 ## Project Installation & Usage
 
-### Installation
+### Project-level Installation
 
 ```bash
 npm i imgpress
 ```
 
-### Compressing a single image
+### Compressing a single image in node project
 
 ```javascript
 import { Compressor } from 'imgpress';
@@ -49,7 +49,7 @@ await Compressor.imageCompress('./original.jpg', './processed.jpg', {
 });
 ```
 
-### Compressing multiple images in a directory
+### Compressing multiple images in a directory in node project
 
 ```javascript
 import { Compressor } from 'imgpress';
