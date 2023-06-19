@@ -32,7 +32,9 @@ If no output directory is specified, the output directory will be "_processed" i
 
 ### Installation
 
-```npm i imgpress```
+```bash
+npm i imgpress
+```
 
 ### Compressing a single image
 
