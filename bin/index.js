@@ -23,9 +23,9 @@ program
 		}
 
 		const result = await Compressor.imageCompress(input, output, {
-			maxWidth,
-			maxHeight,
-			quality,
+			maxWidth: maxWidth ? parseInt(maxWidth) : undefined,
+			maxHeight: maxHeight ? parseInt(maxHeight) : undefined,
+			quality: quality ? parseInt(quality) : undefined,
 			pngToWebp
 		});
 
@@ -46,12 +46,13 @@ program
 	.option('-e, --extensions <array>', 'Extensiones que se procesan por default [jpeg, jpg, png]')
 	.action(async (options) => {
 		const { input, output, maxWidth, maxHeight, quality, pngToWebp, extensions } = options;
+
 		const result = await Compressor.folderCompress(input, output, {
-			maxWidth,
-			maxHeight,
-			quality,
+			maxWidth: maxWidth ? parseInt(maxWidth) : undefined,
+			maxHeight: maxHeight ? parseInt(maxHeight) : undefined,
+			quality: quality ? parseInt(quality) : undefined,
 			pngToWebp,
-			extensions
+			extensions: extensions ? extensions.split(',') : undefined
 		});
 
 		if (result.processed.length) {
