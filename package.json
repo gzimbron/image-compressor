@@ -1,23 +1,25 @@
 {
 	"name": "imgpress",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"description": "Compresor y redimensionador de imágenes con opciones de calidad y tamaño",
-	"type": "module",
-	"main": "./src/index.js",
 	"bin": {
 		"imgpress": "bin/index.js"
 	},
 	"publishConfig": {
 		"access": "public"
 	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./src/index.js",
-			"require": "./src/index.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
 		}
 	},
 	"scripts": {
-		"build": "tsc"
+		"build": "tsup src/index.ts --format cjs,esm --dts --clean"
 	},
 	"keywords": [
 		"image",
@@ -33,15 +35,13 @@
 	"engines": {
 		"node": ">=14.8.0"
 	},
-	"peerDependencies": {
-		"sharp": "^0.32.1"
-	},
 	"dependencies": {
 		"commander": "^11.0.0",
 		"sharp": "^0.32.1"
 	},
 	"devDependencies": {
 		"@types/node": "20.14.10",
+		"tsup": "8.1.0",
 		"typescript": "5.5.3"
 	}
 }
