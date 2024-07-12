@@ -1,6 +1,7 @@
 import fs from 'fs';
 import sharp from 'sharp';
 import { getFileExtension } from '../utils/getExtension.js';
+import { FolderCompressOptions, ImageCompressOptions } from '../types.js';
 
 const jpgExtensions = ['jpeg', 'jpg'];
 const pngExtensions = ['png'];
@@ -11,14 +12,18 @@ export default class Compressor {
 	 * Lee y busca todas las imagenes de una carpeta y las comprime en otra
 	 * @param {string} folderInput Path de la carpeta de entrada
 	 * @param {string} folderOutput Path de la carpeta de salida, si no se especifica, se guardaran en una subcarpeta llamada _processed
-	 * @param {{ quality: number, maxWidth: number, maxHeight: number, extensions: string [], pngToWebp: boolean }} options Opciones de compresión:
+	 * @param {FolderCompressOptions} options Opciones de compresión:
 	 * * quality: calidad de compresión (0 - 100),
 	 * * maxWidth: ancho maximo en pixeles,
 	 * * maxHeight: alto maximo en pixeles,
 	 * * extensions: extensiones que se procesan por default [jpeg, jpg, png],
 	 * * pngToWebp: convierte las imagenes .png a .webp al procesarlas
 	 */
-	static async folderCompress(folderInput, folderOutput = '', options = {}) {
+	static async folderCompress(
+		folderInput: string,
+		folderOutput = '',
+		options: FolderCompressOptions = {}
+	) {
 		if (folderInput.endsWith('/')) {
 			folderInput = folderInput.slice(0, -1);
 		}
@@ -39,10 +44,10 @@ export default class Compressor {
 
 		const files = fs
 			.readdirSync(folderInput)
-			.filter((file) => extensions.includes(getFileExtension(file)));
+			.filter((file: string) => extensions.includes(getFileExtension(file)));
 
 		const processed = [];
-		const noProcessed = {};
+		const noProcessed = [];
 
 		for (const file of files) {
 			const imageInput = `${folderInput}/${file}`;
@@ -54,7 +59,7 @@ export default class Compressor {
 			} catch (error) {
 				noProcessed.push({
 					file,
-					error: error.message
+					error: `No se ha podido procesar la imagen: ${error}`
 				});
 			}
 		}
@@ -69,13 +74,17 @@ export default class Compressor {
 	 * Comprime una imagen y la guarda en otra ruta
 	 * @param {string} imageInput Path de la imagen original
 	 * @param {string} imageOutput Path de la imagen de salida, si no se especifica se guarda en la misma ruta con el sufijo _processed
-	 * @param {{ quality: number, maxWidth: number, maxHeight: number, pngToWebp: boolean }} options Opciones de compresión:
+	 * @param {ImageCompressOptions} options Opciones de compresión:
 	 * * quality: calidad de compresión (0 - 100),
 	 * * maxWidth: ancho maximo en pixeles,
 	 * * maxHeight: alto maximo en pixeles,
 	 * * pngToWebp: convierte las imagenes .png a .webp al procesarlas
 	 */
-	static async imageCompress(imageInput, imageOutput = '', options = {}) {
+	static async imageCompress(
+		imageInput: string,
+		imageOutput = '',
+		options: ImageCompressOptions = {}
+	) {
 		if (!fs.existsSync(imageInput)) {
 			throw new Error('La imagen de entrada no existe');
 		}
@@ -85,20 +94,18 @@ export default class Compressor {
 			imageOutput = imageInput.replace('.' + extension, '_processed.' + extension);
 		}
 
-		const {
-			quality = 80,
-			maxWidth = 1000,
-			maxHeight = 1000,
-			extensions = [...defaultExtensionsAllowed],
-			pngToWebp = false
-		} = options;
+		const { quality = 80, maxWidth = 1000, maxHeight = 1000, pngToWebp = false } = options;
 
-		if (!extensions.includes(extension)) {
+		if (!defaultExtensionsAllowed.includes(extension)) {
 			throw new Error('La extension de la imagen no es valida');
 		}
 
 		const processingImage = sharp(imageInput);
 		const metadata = await processingImage.metadata();
+
+		if (!metadata || !metadata.width || !metadata.height) {
+			throw new Error('No se ha podido procesar la imagen');
+		}
 
 		if (metadata.width > maxWidth || metadata.height > maxHeight) {
 			await processingImage.resize({

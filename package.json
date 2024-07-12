@@ -16,7 +16,9 @@
 			"require": "./src/index.js"
 		}
 	},
-	"scripts": {},
+	"scripts": {
+		"build": "tsc"
+	},
 	"keywords": [
 		"image",
 		"compress",
@@ -37,5 +39,9 @@
 	"dependencies": {
 		"commander": "^11.0.0",
 		"sharp": "^0.32.1"
+	},
+	"devDependencies": {
+		"@types/node": "20.14.10",
+		"typescript": "5.5.3"
 	}
 }
