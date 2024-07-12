@@ -1,5 +1,4 @@
-import Compressor from './classes/compressor.js';
-import { getFileExtension } from './utils/getExtension.js';
-
+import Compressor from './classes/compressor';
+import { getFileExtension } from './utils/getExtension';
 
 export { Compressor, getFileExtension };

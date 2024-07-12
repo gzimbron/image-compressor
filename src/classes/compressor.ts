@@ -1,7 +1,7 @@
 import fs from 'fs';
 import sharp from 'sharp';
-import { getFileExtension } from '../utils/getExtension.js';
-import { FolderCompressOptions, ImageCompressOptions } from '../types.js';
+import { getFileExtension } from '../utils/getExtension';
+import { FolderCompressOptions, ImageCompressOptions } from '../types';
 
 const jpgExtensions = ['jpeg', 'jpg'];
 const pngExtensions = ['png'];

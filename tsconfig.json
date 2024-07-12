@@ -1,14 +1,17 @@
 {
 	"compilerOptions": {
-		"target": "es2016",
-		"module": "commonjs",
-    "moduleResolution": "node",
-    "types": ["node"],
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
+		"target": "esnext",
+		"module": "esnext",
 		"strict": true,
+		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"rootDir": "src",
-		"outDir": "./dist", 
-	}
+		"forceConsistentCasingInFileNames": true,
+		"outDir": "dist",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"declaration": true,
+		"declarationDir": "dist/types",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["src/**/*"]
 }
